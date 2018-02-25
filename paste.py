@@ -17,8 +17,11 @@ print(paste(*paste_header([PEI1, PEI1, PEI3], 'header1', 'header2'),
             
 print(paste(PEI3, PEI2, margin=14)) # 2 columns with varied margin spacing
 
-print(paste(*paste_header(['eggs\nmilk\nbread\ncheese\ncheck for sale',
-                           '$3.00\n$2.00\n$1.50\n$2.00'], 'items', 'price'),
+print(
+      paste(
+            *paste_header(['eggs\nmilk\nbread\ncheese\ncheck for sale',
+                           '$3.00\n$2.00\n$1.50\n$2.00'],
+                          'items', 'price'),
             has_header=True,
             margin=3)) # a human readable example
 '''
