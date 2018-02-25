@@ -6,6 +6,7 @@ PEI4 = '\n\n\n3\n5'
 
 # some examples
 '''
+print(paste(*paste_header(['a\nb\nc','1\n2\n3'],'x','n'),has_header=True,margin=3))
 print(paste(PEI1, PEI2)) # 2 columns
 print(paste(PEI1, PEI1)) # 2 identical columns
 print(paste(PEI1, PEI2, PEI3, PEI4)) # 4 unique columns
