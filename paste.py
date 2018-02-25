@@ -40,15 +40,13 @@ def paste(string1, string2, *strings, margin=1, has_header=False, depth=0):
     string1_list += ['']*(col_height - len(string1_list)) # equate dimensions on s1/s2
     string2_list += ['']*(col_height - len(string2_list))
 
-    for i in range(col_height-1): # subtract 1 to avoid trailing newline
-        result += string1_list[i] +\
-                  ' '*(col_width - len(string1_list[i])) +\
-                  string2_list[i] +\
-                  '\n'
-    # repeat for loop above, except without a final newline
-    result += string1_list[-1] +\
-              ' '*(col_width - len(string1_list[-1])) +\
-              string2_list[-1]
+    for i in range(col_height): # subtract 1 to avoid trailing newline
+        result += string1_list[i]
+        if len(string2_list[i]) != 0: # ensures no trailing spaces
+            result += ' '*(col_width - len(string1_list[i])) +\
+                      string2_list[i]
+        if i != col_height-1: # ensures no trailing newline
+            result += '\n'
     
     if len(strings) == 0:
         return result
