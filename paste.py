@@ -40,7 +40,7 @@ def paste(string1, string2, *strings, margin=1, has_header=False, depth=0):
     string1_list += ['']*(col_height - len(string1_list)) # equate dimensions on s1/s2
     string2_list += ['']*(col_height - len(string2_list))
 
-    for i in range(col_height): # subtract 1 to avoid trailing newline
+    for i in range(col_height):
         result += string1_list[i]
         if len(string2_list[i]) != 0: # ensures no trailing spaces
             result += ' '*(col_width - len(string1_list[i])) +\
@@ -56,6 +56,30 @@ def paste(string1, string2, *strings, margin=1, has_header=False, depth=0):
                      margin=margin, # reassert kwrd args for recursion inheritence
                      has_header=has_header,
                      depth=depth+1) # for loop sensitive functions
+
+def paste_lw(string1, string2, *strings):
+    ''' a lightweight version of paste '''
+    string1_list = string1.split('\n')
+    string2_list = string2.split('\n')
+    result = ''
+    
+    col_width = len(max(string1_list, key=len)) + 1
+    col_height = len(max(string1_list, string2_list, key=len))
+
+    string1_list += ['']*(col_height - len(string1_list)) # equate dimensions on s1/s2
+    string2_list += ['']*(col_height - len(string2_list))
+
+    for i in range(col_height):
+        result += string1_list[i] +\
+                  ' '*(col_width - len(string1_list[i])) +\
+                  string2_list[i]
+        if i != col_height-1:
+            result += '\n'
+    
+    if len(strings) == 0:
+        return result
+    else:
+        return paste(result, strings[0], *strings[1:])
 
 def paste_header(list_of_strings, *headers):
     ''' for adding headers to columns '''
